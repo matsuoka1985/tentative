@@ -59,7 +59,7 @@ jobs:
 
       - name: Fix npm permissions and run production build
         run: |
-          docker compose exec -T web sudo chown -R node:node /root/.npm || true
+          docker compose exec -T web rm -rf /root/.npm || true
           docker compose exec -T web npm run prod
 
       - uses: aws-actions/amazon-ecr-login@v1
