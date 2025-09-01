@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+      
 env:
   AWS_REGION: ap-northeast-1
   IMAGE_TAG: ${{ github.sha }}
@@ -51,7 +52,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-          
+
       - name: Cache npm
         id: cache-npm-ci
         uses: actions/cache@v4
