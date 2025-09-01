@@ -57,10 +57,9 @@ jobs:
       - run: docker compose exec -T web npm ci
         if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
 
-      - name: Fix npm permissions and run production build
+      - name: Run production build with clean npm
         run: |
-          docker compose exec -T web rm -rf /root/.npm || true
-          docker compose exec -T web npm run prod
+          docker compose exec -T web bash -c "rm -rf /root/.npm && npm cache clean --force && npm run prod"
 
       - uses: aws-actions/amazon-ecr-login@v1
         id: amazon-ecr-login
